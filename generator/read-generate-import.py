@@ -66,18 +66,18 @@ def main():
     #Api Keys and Models
     parser.add_argument("--text_model", type=str, default=AvailableModels.COHERE.value)
     parser.add_argument("--text_api_key", type=str, help="Text model API key",
-                        default="alLJoMiQJmwGYhoSDNUn5nPrIPKOZWxAKcTIxgfb")
+                        default="")
     parser.add_argument("--text_secret_key", type=str, help="Text model secret key", default="")
 
     parser.add_argument("--image_model", type=str, default=AvailableModels.KANDINSKY_3.value)
     parser.add_argument("--image_api_key", type=str, help="Image model API key",
-                        default="D4A1B409BF9DB0CB3BA89D5507A2C7E8")
+                        default="")
     parser.add_argument("--image_secret_key", type=str, help="Image model secret",
-                        default="E6A4DAF80A44A4935EE4A7DC9C15C294")
+                        default="")
 
     parser.add_argument("--voice_model", type=str, default=AvailableModels.ELEVENLABS.value)
     parser.add_argument("--voice_api_key", type=str, help="Voice model API",
-                        default="08d45505b4cf43add13b1e02128bfc41")
+                        default="")
     parser.add_argument("--voice_secret_key", type=str, help="Voice model secret", default="")
 
     # Parse arguments
