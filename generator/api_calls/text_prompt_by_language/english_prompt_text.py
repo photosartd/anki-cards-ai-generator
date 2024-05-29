@@ -21,7 +21,7 @@ Input Format:
 
 Output Expectations:
 - Exclude unrelated sentences, as the "Card Example". 
-- You can not use the word from input in the output. All letters should be masked with underscores.
+- You CAN NOT use the word from input in the output. All letters should be masked with underscores.
 - Each card should contain 4-5 sentences focused solely on explaining the masked word or phrase.
 - Your output should contain only the text for the card.
 

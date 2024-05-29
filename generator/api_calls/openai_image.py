@@ -1,5 +1,6 @@
 import logging
 from openai import OpenAI
+import cohere
 
 from ..config import Config
 from ..entities import WordWithContext
@@ -47,10 +48,15 @@ Here are some good and bad examples:
 Word: advice
 Good example: A serene park setting where a wise elderly person is advising a young adult, both holding umbrellas on a cloudy day, illustrating the concept of giving recommendations based on weather conditions.
 Bad example: A wise owl perched on a tree branch, with a serene forest background, symbolizing wisdom and guidance. The owl should look thoughtful and attentive, as if ready to offer sage advice. No text in the image.
+
+Here I give you the first word and text, you can generate after them:
 """
 
 
-def chat_generate_dalle_prompt(word_with_context: WordWithContext, card_text) -> str:
+def chat_generate_dalle_prompt(
+        word_with_context: WordWithContext,
+        card_text,
+        model: str) -> str:
     logging.info(f"DALLE prompt generation: processing word [{word_with_context.word}]")
     logging.debug(f"DALLE prompt generation: processing card text [{card_text}]")
 
@@ -67,7 +73,7 @@ def chat_generate_dalle_prompt(word_with_context: WordWithContext, card_text) ->
         # input prompt
         messages=messages,
         # model parameters
-        model="gpt-4o",
+        model=model,
         temperature=0.2,
         max_tokens=256,
         n=1,
@@ -94,3 +100,23 @@ def chat_generate_image(prompt: str) -> str:
     image_url = response.data[0].url
     logging.debug(f"DALLE generated image URL: {image_url}")
     return image_url
+
+
+def cohere_generate_dalle_prompt(word_with_context: WordWithContext,
+        card_text,
+        api_key: str) -> str:
+    logging.info(f"DALLE prompt generation: processing word [{word_with_context.word}]")
+    logging.debug(f"DALLE prompt generation: processing card text [{card_text}]")
+    co = cohere.Client(api_key)
+    message = f"""
+        {anki_prompt_preamble}
+        WORD: [{word_with_context.word}]; CONTEXT: [{word_with_context.context}]
+        """
+    response = co.chat(
+        message=message,
+        temperature=0.2,
+        max_tokens=256,
+    )
+    generated_text = response.text
+    logging.info(f"Generated DALLE prompt: {generated_text}")
+    return generated_text

@@ -1,14 +1,15 @@
 import logging
 from openai import OpenAI
+import cohere
 
-from ..config import Config
-from ..entities import WordWithContext
-from .text_prompt_by_language import prompt_by_language
+from generator.config import Config
+from generator.entities import WordWithContext
+from generator.api_calls.text_prompt_by_language import prompt_by_language
 
 
-
-def chat_generate_text(word_with_context: WordWithContext) -> str:
-    logging.info(f"ChatGPT card text: processing word [{word_with_context.word}] with context [{word_with_context.context}] in language [{Config.LANGUAGE}]")
+def chat_generate_text(word_with_context: WordWithContext, model: str) -> str:
+    logging.info(
+        f"ChatGPT card text: processing word [{word_with_context.word}] with context [{word_with_context.context}] in language [{Config.LANGUAGE}]")
 
     system_prompt = prompt_by_language.get_system_prompt_by_language()
 
@@ -27,7 +28,7 @@ def chat_generate_text(word_with_context: WordWithContext) -> str:
         # input prompt
         messages=messages,
         # model parameters
-        model="gpt-4o",
+        model=model,
         temperature=0.2,  # keep low for conservative answers
         max_tokens=512,
         n=1,
@@ -39,3 +40,23 @@ def chat_generate_text(word_with_context: WordWithContext) -> str:
     logging.debug(f"ChatGPT generated card text for word {word_with_context.word}")
     logging.debug(f"ChatGPT card text: {generated_text}")
     return generated_text
+
+
+def cohere_generate_text(word_with_context: WordWithContext, api_key: str) -> str:
+    logging.info(
+        f"Cohere card text: processing word [{word_with_context.word}] with context [{word_with_context.context}] in language [{Config.LANGUAGE}]")
+
+    system_prompt = prompt_by_language.get_system_prompt_by_language()
+    co = cohere.Client(api_key)
+    message = f"""
+    {system_prompt}
+    WORD: [{word_with_context.word}]; CONTEXT: [{word_with_context.context}]
+    """
+    response = co.chat(
+        message=message,
+        temperature=0.2,
+        max_tokens=512,
+    )
+    text = response.text
+    text = text.replace(word_with_context.word, "")
+    return text

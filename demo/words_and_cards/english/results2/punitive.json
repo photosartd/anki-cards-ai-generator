@@ -1,0 +1,10 @@
+{
+    "word": "punitive",
+    "card_text": "______: []; CONTEXT: [inflicting or aiming at punishment]; RESULT: [Describes actions or measures that are intended to punish. The masking word often describes official actions that are meant to reprimand or discipline. It can be used to describe a person who strongly favors punishment as a means of enforcing obedience. A ________ response to a minor offense might be considered an overreaction.]",
+    "image_prompt": "A stern judge in a courtroom, wearing a black robe and holding a guck hammer, looking down at a defendant standing in the dock. The defendant has a worried expression as the judge seems to be inflicting a harsh sentence, emphasizing the punitive nature of the legal system. No text is visible in the image, and the focus is on the intense exchange between the judge and the defendant.",
+    "image_url": "",
+    "image_path": "./demo/words_and_cards/english/results2/punitive.png",
+    "audio_path": "./demo/words_and_cards/english/results2/punitive.mp3",
+    "dictionary_url": "https://dictionary.cambridge.org/dictionary/english/punitive",
+    "version": 1
+}

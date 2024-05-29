@@ -1,0 +1,10 @@
+{
+    "word": "cede",
+    "card_text": "____: []; CONTEXT: [(e.g. leadership) to give up]; RESULT: [When someone _____ something, they voluntarily surrender it, often a position of power or an asset. This can be done as a strategic move or to comply with external demands. _____ connotes a conscious decision to relinquish control, and it's often used in the context of negotiations or political settlements. For example, a leader may choose to _____ their leadership position to a rival party to maintain peace.]",
+    "image_prompt": "A confident business leader, with a determined expression, stands in front of a large window overlooking a city skyline at night. The leader is passing a glowing orb, symbolizing power and influence, to a colleague, signifying the act of ceding leadership and the transfer of responsibility and authority. The recipient, with a respectful posture, is ready to take on the new role, with the city lights reflecting the potential for growth and new beginnings.",
+    "image_url": "",
+    "image_path": "./demo/words_and_cards/english/results2/cede.png",
+    "audio_path": "./demo/words_and_cards/english/results2/cede.mp3",
+    "dictionary_url": "https://dictionary.cambridge.org/dictionary/english/cede",
+    "version": 1
+}

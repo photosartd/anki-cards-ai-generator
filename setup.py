@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 def read_requirements():
-    with open('requirements.txt') as f:
+    with open('requirements.txt', encoding="utf-8") as f:
         return f.read().splitlines()
 
 

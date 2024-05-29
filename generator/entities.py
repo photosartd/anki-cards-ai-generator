@@ -1,6 +1,8 @@
 import json
 import re
 from dataclasses import dataclass, asdict
+from abc import ABC, abstractmethod
+from enum import Enum
 
 
 @dataclass(frozen=True)
@@ -27,15 +29,13 @@ class CardRawDataV1:
     version: int = 1
 
     def __post_init__(self):
-        not_nullable = [self.word, self.card_text, self.image_url, self.image_path]
+        not_nullable = [self.word, self.card_text, self.image_path]
         if None in not_nullable:
             raise ValueError(f"Attributes cannot be None: {serialize_to_json(self)}")
         if self.word == "":
             raise ValueError("Word cannot be empty")
         if self.card_text == "":
             raise ValueError("Card text cannot be empty")
-        if self.image_url == "":
-            raise ValueError("Image URL cannot be empty")
         if self.audio_path == "" or self.image_path == "":
             raise ValueError("Paths cannot be empty")
 
