@@ -15,7 +15,7 @@ C2 = "C2"
 
 class Config:
     OPENAI_API_KEY: str = None
-    SECONDS_WAIT_BETWEEN_DALLE_CALLS: int = 20
+    SECONDS_WAIT_BETWEEN_DALLE_CALLS: int = 0
     DECK_NAME: str = None
     ANKI_MEDIA_DIRECTORY: str = None
     PROCESSING_DIRECTORY_PATH: str = None
